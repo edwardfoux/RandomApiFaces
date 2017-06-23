@@ -17,10 +17,10 @@ import com.example.edwardfouxvictorious.randomapifaces.pojo.RandomFace;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RandomFacesAdapter extends RecyclerView.Adapter<RandomFaceViewHolder> {
+class RandomFacesAdapter extends RecyclerView.Adapter<RandomFaceViewHolder> {
 
     private List<RandomFace> list = new ArrayList<>();
-    ItemClickListener itemClickListener;
+    private ItemClickListener itemClickListener;
 
     RandomFacesAdapter(ItemClickListener itemClickListener) {
         this.itemClickListener = itemClickListener;

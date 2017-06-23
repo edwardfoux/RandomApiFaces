@@ -1,14 +1,15 @@
 package com.example.edwardfouxvictorious.randomapifaces;
 
-import retrofit.Callback;
-import retrofit.Response;
-import retrofit.Retrofit;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Abstract class for the network
  * @param <T>
  */
-public abstract class ApiCallback<T> implements Callback<T>{
+public abstract class ApiCallback<T> implements Callback<T> {
     public ApiCallback() {
         super();
     }
@@ -16,10 +17,12 @@ public abstract class ApiCallback<T> implements Callback<T>{
     public abstract void onSuccess(T response);
 
     @Override
-    public void onResponse(Response<T> response, Retrofit retrofit) {
+    public void onResponse(Call<T> call, Response<T> response) {
         onSuccess(response.body());
     }
 
     @Override
-    public void onFailure(Throwable t) {}
+    public void onFailure(Call<T> call, Throwable t) {
+
+    }
 }

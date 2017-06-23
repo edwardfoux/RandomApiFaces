@@ -47,6 +47,37 @@ public class RandomFace implements Parcelable {
         return picture;
     }
 
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setName(Name name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
+
+    public void setRegistered(String registered) {
+        this.registered = registered;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setCell(String cell) {
+        this.cell = cell;
+    }
+
+    public void setPicture(Picture picture) {
+        this.picture = picture;
+    }
 
     @Override
     public int describeContents() {

@@ -2,6 +2,7 @@ package com.example.edwardfouxvictorious.randomapifaces.list_activity.mvp;
 
 import android.support.annotation.VisibleForTesting;
 
+import com.example.edwardfouxvictorious.randomapifaces.ActivityScope;
 import com.example.edwardfouxvictorious.randomapifaces.ApiCallback;
 import com.example.edwardfouxvictorious.randomapifaces.list_activity.RandomUserResponse;
 import com.example.edwardfouxvictorious.randomapifaces.list_activity.RandomUserSearchRequest;
@@ -13,10 +14,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import retrofit.Call;
-import retrofit.GsonConverterFactory;
-import retrofit.Retrofit;
+import javax.inject.Inject;
 
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+@ActivityScope
 public class RandomFacesPresenter {
 
     private static final String BASE_URL = "https://randomuser.me/";
@@ -24,10 +28,10 @@ public class RandomFacesPresenter {
     private static final String RESULT = "results";
     private static final String ITEMS_PER_PAGE = "10";
 
-    @VisibleForTesting
-    RandomSearchView randomSearchView;
+    private RandomSearchView randomSearchView;
 
-    public RandomFacesPresenter(RandomSearchView randomSearchView) {
+    @Inject
+    RandomFacesPresenter(RandomSearchView randomSearchView) {
         this.randomSearchView = randomSearchView;
     }
 
@@ -55,7 +59,8 @@ public class RandomFacesPresenter {
         call.enqueue(new DataLoaderCallback(this));
     }
 
-    private void processResponse(RandomUserResponse response) {
+    @VisibleForTesting
+    void processResponse(RandomUserResponse response) {
         randomSearchView.hideProgressView();
 
         List<RandomFace> albumList = response.getResults();
@@ -70,7 +75,8 @@ public class RandomFacesPresenter {
         randomSearchView.openFacePage(randomFace);
     }
 
-    private void showErrorMessage(String message) {
+    @VisibleForTesting
+    void showErrorMessage(String message) {
         randomSearchView.showErrorMessage(message);
     }
 
@@ -93,7 +99,7 @@ public class RandomFacesPresenter {
         }
 
         @Override
-        public void onFailure(Throwable t) {
+        public void onFailure(Call<RandomUserResponse> call, Throwable t) {
             RandomFacesPresenter randomFacesPresenter = ref.get();
             if (randomFacesPresenter == null) return;
 

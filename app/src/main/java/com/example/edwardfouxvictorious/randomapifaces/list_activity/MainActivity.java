@@ -11,13 +11,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.edwardfouxvictorious.randomapifaces.face_activity.FaceActivity;
 import com.example.edwardfouxvictorious.randomapifaces.R;
+import com.example.edwardfouxvictorious.randomapifaces.face_activity.FaceActivity;
 import com.example.edwardfouxvictorious.randomapifaces.list_activity.mvp.RandomFacesPresenter;
 import com.example.edwardfouxvictorious.randomapifaces.list_activity.mvp.RandomSearchView;
 import com.example.edwardfouxvictorious.randomapifaces.pojo.RandomFace;
 
 import java.util.List;
+
+import javax.inject.Inject;
+
+import dagger.android.AndroidInjection;
 
 public class MainActivity extends AppCompatActivity implements RandomSearchView {
     public static final String DATA = "data";
@@ -25,27 +29,28 @@ public class MainActivity extends AppCompatActivity implements RandomSearchView 
     public static final String ERROR_500 = "500";
 
     private RecyclerView recyclerView;
-    private RandomFacesPresenter albumSearchPresenter;
+    @Inject
+    RandomFacesPresenter albumSearchPresenter;
     private RandomFacesAdapter albumSearchAdapter;
     private View progressView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.random_face_activity);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         progressView = findViewById(R.id.progress_view);
 
-        albumSearchPresenter = new RandomFacesPresenter(this);
         albumSearchAdapter = new RandomFacesAdapter(new ItemCLickListener(albumSearchPresenter));
 
 
         recyclerView.setAdapter(albumSearchAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
-        if(!isConnectedToInternet()) {
+        if (!isConnectedToInternet()) {
             Toast.makeText(this, R.string.no_internet, Toast.LENGTH_SHORT).show();
-            return ;
+            return;
         }
 
         if (savedInstanceState != null) {
@@ -79,9 +84,11 @@ public class MainActivity extends AppCompatActivity implements RandomSearchView 
     public void showErrorMessage(String message) {
         String errorMessage;
         switch (message) {
-            case ERROR_401: errorMessage = getResources().getString(R.string.error_401);
+            case ERROR_401:
+                errorMessage = getResources().getString(R.string.error_401);
                 break;
-            case ERROR_500: errorMessage = getResources().getString(R.string.error_500);
+            case ERROR_500:
+                errorMessage = getResources().getString(R.string.error_500);
                 break;
             default:
                 errorMessage = getResources().getString(R.string.error_default);

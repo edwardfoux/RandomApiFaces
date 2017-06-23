@@ -9,7 +9,7 @@ import com.example.edwardfouxvictorious.randomapifaces.R;
 import com.example.edwardfouxvictorious.randomapifaces.pojo.RandomFace;
 import com.squareup.picasso.Picasso;
 
-public class RandomFaceViewHolder extends  RecyclerView.ViewHolder implements View.OnClickListener{
+class RandomFaceViewHolder extends  RecyclerView.ViewHolder implements View.OnClickListener{
 
     private TextView textView;
     private ImageView imageView;

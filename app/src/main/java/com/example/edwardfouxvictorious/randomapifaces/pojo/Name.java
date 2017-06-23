@@ -20,6 +20,18 @@ public class Name implements Parcelable {
         return last;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setFirst(String first) {
+        this.first = first;
+    }
+
+    public void setLast(String last) {
+        this.last = last;
+    }
+
     @Override
     public int describeContents() {
         return 0;

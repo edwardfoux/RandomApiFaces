@@ -16,7 +16,7 @@ public class RandomUserResponse implements Parcelable {
         return results;
     }
 
-    public void setResults(List<RandomFace> results) {
+    void setResults(List<RandomFace> results) {
         this.results = results;
     }
 
@@ -34,8 +34,8 @@ public class RandomUserResponse implements Parcelable {
     public RandomUserResponse() {
     }
 
-    protected RandomUserResponse(Parcel in) {
-        this.results = new ArrayList<RandomFace>();
+    private RandomUserResponse(Parcel in) {
+        this.results = new ArrayList<>();
         in.readList(this.results, RandomFace.class.getClassLoader());
     }
 

@@ -4,9 +4,9 @@ import com.example.edwardfouxvictorious.randomapifaces.list_activity.mvp.RandomF
 
 import java.util.Map;
 
-import retrofit.Call;
-import retrofit.http.GET;
-import retrofit.http.QueryMap;
+import retrofit2.Call;
+import retrofit2.http.GET;
+import retrofit2.http.QueryMap;
 
 public interface RandomUserSearchRequest {
     @GET(RandomFacesPresenter.URL_PATH)

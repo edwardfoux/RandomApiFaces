@@ -21,6 +21,18 @@ public class Picture implements Parcelable {
         return medium;
     }
 
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
+    }
+
+    public void setLarge(String large) {
+        this.large = large;
+    }
+
+    public void setMedium(String medium) {
+        this.medium = medium;
+    }
+
     @Override
     public int describeContents() {
         return 0;
