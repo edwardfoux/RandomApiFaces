@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">RandomApiFaces</string>
+    <string name="search_title">Search for Albums</string>
+    <string name="no_internet">No Internet Connection!</string>
+    <string name="error_500">error 500</string>
+    <string name="error_401">error 401</string>
+    <string name="error_default">error unknown</string>
+</resources>
